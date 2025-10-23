@@ -10,7 +10,7 @@ import graphs.Util.Pair;
 
 public class PrimMST {
 
-    public Pair<List<Edge>, Long> Prim(List<Edge> edges, int n){
+    public static Pair<List<Edge>, Long> Prim(List<Edge> edges, int n){
 
         List<List<Edge>> adj = new ArrayList<>();
 

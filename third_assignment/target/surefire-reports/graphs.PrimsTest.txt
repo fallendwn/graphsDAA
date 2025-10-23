@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: graphs.KraskalTest
+Test set: graphs.PrimsTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.203 s - in graphs.KraskalTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.184 s - in graphs.PrimsTest
