@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import graphs.Util.Edge;
 import graphs.Util.Pair;
@@ -20,7 +22,9 @@ public class PrimsTest {
         try{
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(new File("src/test/java/graphs/input.json"));
-
+        ObjectNode  outRoot = (ObjectNode) root.deepCopy();
+        ArrayNode graphsInOutput = (ArrayNode) outRoot.get("graphs");
+        int index = 0;
         for(JsonNode graphNode : root.get("graphs")){
 
             int id = graphNode.get("id").asInt();
@@ -42,15 +46,26 @@ public class PrimsTest {
 
             Pair<List<Edge>, Long> result = PrimMST.Prim(edges,nodes.size());
 
-            System.out.println("Graph ID: " + id);
-            System.out.println("MST edges: ");
-            for (Edge e : result.first){
+            ObjectNode output = (ObjectNode) graphsInOutput.get(index);
 
-                System.out.println(nodes.get(e.u) + " - " + nodes.get(e.v) + " (" + e.w + ")");
+            ArrayNode mstArray = mapper.createArrayNode();
+            
+            for(Edge e : result.first){
+
+                ObjectNode edgeJson = mapper.createObjectNode();
+                edgeJson.put("from", nodes.get(e.u));
+                edgeJson.put("to", nodes.get(e.v));
+                edgeJson.put("weight", e.w);
+                mstArray.add(edgeJson);
+
 
             }
-            
 
+            output.set("mst", mstArray);
+            output.put("totalWeight", result.second);
+            index++;
+            File outputFile = new File("src/test/java/graphs/PrimOutput.json");
+            mapper.writerWithDefaultPrettyPrinter().writeValue(outputFile, outRoot);
 
         }
 
