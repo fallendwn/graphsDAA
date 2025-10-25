@@ -22,13 +22,13 @@ Kruskal Algorithm
 
 Prim's Algorithm
 
-<ul>
+<ol>
 
   <li>Builds MST from 1 node</li>
   <li>Through Priority Queue pick smallest edge connecting tree to a new vertex</li>
   <li>Repeats untill end</li>
   
-</ul>
+</ol>
 
 <h3>Input Data</h3>
 Input data are stored in JSON files (small_graphs.json, medium_graphs.json, large_graphs.json) and also output is stored in the same package in json format.
