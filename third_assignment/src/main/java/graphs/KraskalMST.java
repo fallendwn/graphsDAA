@@ -10,7 +10,8 @@ import graphs.Util.Pair;
 public class KraskalMST{
 
     public static Pair<List<Edge>, Long> kruskal(List<Edge> edges, int n){
-
+        Metrics.reset();
+        Metrics.startTimer();
         Collections.sort(edges);
         DisjointSetUnion dsu = new DisjointSetUnion(n);
 
@@ -18,7 +19,7 @@ public class KraskalMST{
         long totalWeight = 0;
 
         for (Edge e : edges){
-
+            Metrics.increaseComp();
             if (dsu.union(e.u, e.v)){
 
                 MSTlist.add(e);
@@ -32,7 +33,7 @@ public class KraskalMST{
             }
 
         }
-
+        Metrics.stopTimer();
         return new Pair<>(MSTlist, totalWeight);
     }
 

@@ -1,6 +1,7 @@
-graphs\PrimMST.class
 graphs\Util$Edge.class
+graphs\Metrics.class
 graphs\Util$DisjointSetUnion.class
 graphs\KraskalMST.class
 graphs\Util.class
+graphs\PrimMST.class
 graphs\Util$Pair.class

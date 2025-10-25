@@ -11,7 +11,13 @@ import graphs.Util.Pair;
 public class PrimMST {
 
     public static Pair<List<Edge>, Long> Prim(List<Edge> edges, int n){
+        Metrics.reset();
+        Metrics.startTimer();
 
+        if (n == 0 || edges.isEmpty()) {
+            Metrics.stopTimer();
+            return new Pair<>(new ArrayList<>(), 0L);
+        }
         List<List<Edge>> adj = new ArrayList<>();
 
         for(int i = 0; i < n ; i ++){
@@ -34,11 +40,13 @@ public class PrimMST {
 
         visited[0] = true;
         pq.addAll(adj.get(0));
+        Metrics.increasePQ();
+
 
         while(!pq.isEmpty() && mstEdges.size() < n-1){
 
             Edge minEdge = pq.poll();
-
+            Metrics.increasePQ();
             if (visited[minEdge.v]){
                 
                 continue;
@@ -50,16 +58,20 @@ public class PrimMST {
             totalWeight += minEdge.w;
 
             for(Edge next : adj.get(minEdge.v)){
-
+                Metrics.increaseComp();
                 if(!visited[next.v]){
 
                     pq.add(next);
+                    Metrics.increasePQ();
+                    Metrics.increaseRelax();
 
                 }
 
             }
 
         }
+
+        Metrics.stopTimer();
         return new Pair<>(mstEdges,totalWeight);
 
     }

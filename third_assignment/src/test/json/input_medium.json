@@ -1,0 +1,40 @@
+{
+  "graphs": [
+    {
+      "id": 4,
+      "nodes": ["A","B","C","D","E","F","G","H","I","J"],
+      "edges": [
+        {"from":"A","to":"B","weight":4},{"from":"A","to":"C","weight":3},
+        {"from":"B","to":"C","weight":1},{"from":"B","to":"D","weight":2},
+        {"from":"C","to":"D","weight":5},{"from":"D","to":"E","weight":2},
+        {"from":"E","to":"F","weight":3},{"from":"F","to":"G","weight":2},
+        {"from":"G","to":"H","weight":4},{"from":"H","to":"I","weight":1},
+        {"from":"I","to":"J","weight":2},{"from":"J","to":"A","weight":3}
+      ]
+    },
+    {
+      "id": 5,
+      "nodes": ["A","B","C","D","E","F","G","H","I","J","K"],
+      "edges": [
+        {"from":"A","to":"B","weight":5},{"from":"B","to":"C","weight":2},
+        {"from":"C","to":"D","weight":3},{"from":"D","to":"E","weight":4},
+        {"from":"E","to":"F","weight":2},{"from":"F","to":"G","weight":6},
+        {"from":"G","to":"H","weight":3},{"from":"H","to":"I","weight":5},
+        {"from":"I","to":"J","weight":1},{"from":"J","to":"K","weight":4},
+        {"from":"K","to":"A","weight":3}
+      ]
+    },
+    {
+      "id": 6,
+      "nodes": ["A","B","C","D","E","F","G","H","I","J","K","L"],
+      "edges": [
+        {"from":"A","to":"B","weight":2},{"from":"B","to":"C","weight":3},
+        {"from":"C","to":"D","weight":1},{"from":"D","to":"E","weight":4},
+        {"from":"E","to":"F","weight":2},{"from":"F","to":"G","weight":3},
+        {"from":"G","to":"H","weight":4},{"from":"H","to":"I","weight":5},
+        {"from":"I","to":"J","weight":2},{"from":"J","to":"K","weight":3},
+        {"from":"K","to":"L","weight":1},{"from":"L","to":"A","weight":2}
+      ]
+    }
+  ]
+}

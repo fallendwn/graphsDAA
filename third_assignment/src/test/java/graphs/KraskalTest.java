@@ -1,6 +1,7 @@
 package graphs;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,69 +16,79 @@ import graphs.Util.Edge;
 import graphs.Util.Pair;
 
 public class KraskalTest {
-    
+    private final String csv_path = "src/test/json/kraskal_results.csv";
+
     @Test
     public void readJSON(){
-        try{
+        String[] inputFiles = {
+
+            "src/test/json/input_small.json",
+            "src/test/json/input_medium.json",
+            "src/test/json/input_large.json"
+
+        };
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode root = mapper.readTree(new File("src/test/java/graphs/input.json"));
-        ObjectNode  outRoot = (ObjectNode) root.deepCopy();
-        ArrayNode graphsInOutput = (ArrayNode) outRoot.get("graphs");
-        int index = 0;
-        for(JsonNode graphNode : root.get("graphs")){
+        for(String input : inputFiles){
+            try (FileWriter csvWriter = new FileWriter(csv_path)){
+            csvWriter.write("graph_id,size,totalWeight,time,comparisons,unions,finds");
+            JsonNode root = mapper.readTree(new File(input));
+            ObjectNode  outRoot = (ObjectNode) root.deepCopy();
+            ArrayNode graphsInOutput = (ArrayNode) outRoot.get("graphs");
+            int index = 0;
+            for(JsonNode graphNode : root.get("graphs")){
 
-            int id = graphNode.get("id").asInt();
-            List<String> nodes = new ArrayList<>();
-            graphNode.get("nodes").forEach(n -> nodes.add(n.asText()));
+                List<String> nodes = new ArrayList<>();
+                graphNode.get("nodes").forEach(n -> nodes.add(n.asText()));
 
-            List<Edge> edges = new ArrayList<>();
-            for (JsonNode edgeNode : graphNode.get("edges")){
+                List<Edge> edges = new ArrayList<>();
+                for (JsonNode edgeNode : graphNode.get("edges")){
 
-                String from = edgeNode.get("from").asText();
-                String to = edgeNode.get("to").asText();
-                int weight = edgeNode.get("weight").asInt();
+                    String from = edgeNode.get("from").asText();
+                    String to = edgeNode.get("to").asText();
+                    int weight = edgeNode.get("weight").asInt();
 
-                int u = from.charAt(0) - 'A';
-                int v = to.charAt(0) - 'A';
-                edges.add(new Edge(u,v,weight));
+                    int u = from.charAt(0) - 'A';
+                    int v = to.charAt(0) - 'A';
+                    edges.add(new Edge(u,v,weight));
 
+                }
+
+                Pair<List<Edge>, Long> result = KraskalMST.kruskal(edges,nodes.size());
+                Metrics.logReport("Kruskal", graphNode.get("id").asInt());
+                ObjectNode output = (ObjectNode) graphsInOutput.get(index);
+
+                ArrayNode mstArray = mapper.createArrayNode();
+                
+                for(Edge e : result.first){
+
+                    ObjectNode edgeJson = mapper.createObjectNode();
+                    edgeJson.put("from", nodes.get(e.u));
+                    edgeJson.put("to", nodes.get(e.v));
+                    edgeJson.put("weight", e.w);
+                    mstArray.add(edgeJson);
+
+
+                }
+
+                output.set("mst", mstArray);
+                output.put("totalWeight", result.second);
+                index++;
+                File outputFile = new File("src/test/json/KraskalOutput_" + input.substring(input.lastIndexOf('_')+1));
+                mapper.writerWithDefaultPrettyPrinter().writeValue(outputFile, outRoot);
+
+                csvWriter.write(String.format("%d,%s,%d,%d,%d,%d,%d",index, edges.size(),
+                result.second, Metrics.getTimeMs(), Metrics.getComparisons(), Metrics.getUnions(), Metrics.getFinds()));
             }
 
-            Pair<List<Edge>, Long> result = KraskalMST.kruskal(edges,nodes.size());
 
-                        ObjectNode output = (ObjectNode) graphsInOutput.get(index);
 
-            ArrayNode mstArray = mapper.createArrayNode();
-            
-            for(Edge e : result.first){
+        } catch (Exception e){
 
-                ObjectNode edgeJson = mapper.createObjectNode();
-                edgeJson.put("from", nodes.get(e.u));
-                edgeJson.put("to", nodes.get(e.v));
-                edgeJson.put("weight", e.w);
-                mstArray.add(edgeJson);
-
+                e.printStackTrace();
 
             }
-
-            output.set("mst", mstArray);
-            output.put("totalWeight", result.second);
-            index++;
-            File outputFile = new File("src/test/java/graphs/KraskalOutput.json");
-            mapper.writerWithDefaultPrettyPrinter().writeValue(outputFile, outRoot);
-
-
-        }
-
-
-
-    } catch (Exception e){
-
-            e.printStackTrace();
-
-        }
         
-
+        }
         
 
     }

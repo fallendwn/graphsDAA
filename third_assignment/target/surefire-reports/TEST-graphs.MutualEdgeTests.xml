@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="graphs.KraskalTest" time="0.321" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="graphs.MutualEdgeTests" time="0.041" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="24"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,9 +16,9 @@
     <property name="user.country" value="RU"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-24\bin"/>
-    <property name="sun.java.command" value="C:\Users\denis\AppData\Local\Temp\surefire17938153520161615511\surefirebooter4970869749208927954.jar C:\Users\denis\AppData\Local\Temp\surefire17938153520161615511 2025-10-25T19-04-44_041-jvmRun1 surefire17362523772006645869tmp surefire_016067666662313343303tmp"/>
+    <property name="sun.java.command" value="C:\Users\denis\AppData\Local\Temp\surefire9442472232347428337\surefirebooter18441678936884821739.jar C:\Users\denis\AppData\Local\Temp\surefire9442472232347428337 2025-10-25T19-06-54_701-jvmRun1 surefire4095269722144488273tmp surefire_01641874949527553137tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="test" value="graphs.KraskalTest"/>
+    <property name="test" value="graphs.MutualEdgeTests"/>
     <property name="surefire.test.class.path" value="C:\Users\denis\Desktop\uni dz\2nd year\Design and analysis of Algorithms\3rd assignment\third_assignment\target\test-classes;C:\Users\denis\Desktop\uni dz\2nd year\Design and analysis of Algorithms\3rd assignment\third_assignment\target\classes;C:\Users\denis\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\denis\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\denis\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\denis\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\denis\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\denis\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\denis\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\denis\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;C:\Users\denis\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.15.0\jackson-databind-2.15.0.jar;C:\Users\denis\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.15.0\jackson-annotations-2.15.0.jar;C:\Users\denis\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.15.0\jackson-core-2.15.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\denis"/>
@@ -32,7 +32,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\denis\AppData\Local\Temp\surefire17938153520161615511\surefirebooter4970869749208927954.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\denis\AppData\Local\Temp\surefire9442472232347428337\surefirebooter18441678936884821739.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="24.0.2+12-54"/>
@@ -62,5 +62,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="68.0"/>
   </properties>
-  <testcase name="readJSON" classname="graphs.KraskalTest" time="0.306"/>
+  <testcase name="emptyGraph" classname="graphs.MutualEdgeTests" time="0.02"/>
+  <testcase name="disconnectedGraph" classname="graphs.MutualEdgeTests" time="0.002"/>
+  <testcase name="compareMST" classname="graphs.MutualEdgeTests" time="0.002"/>
+  <testcase name="singleVertexGraph" classname="graphs.MutualEdgeTests" time="0"/>
 </testsuite>
