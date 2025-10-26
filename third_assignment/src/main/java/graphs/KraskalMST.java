@@ -37,5 +37,11 @@ public class KraskalMST{
         return new Pair<>(MSTlist, totalWeight);
     }
 
+    public static Pair<List<Edge>, Long> kruskal(Graph g) {
+        if (g == null || g.isEmpty()) {
+            return new Pair<>(new ArrayList<>(), 0L);
+        }
+        return kruskal(g.getEdges(), g.getCount());
+    }
 
 }

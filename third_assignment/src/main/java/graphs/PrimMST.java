@@ -76,4 +76,11 @@ public class PrimMST {
 
     }
 
+    public static Pair<List<Edge>, Long> Prim(Graph g) {
+        if (g == null || g.isEmpty()) {
+            return new Pair<>(new ArrayList<>(), 0L);
+        }
+        return Prim(g.getEdges(), g.getCount());
+    }
+
 }

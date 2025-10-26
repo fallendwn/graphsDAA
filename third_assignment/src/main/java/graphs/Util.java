@@ -1,5 +1,7 @@
 package graphs;
 
+import graphs.Util.Edge;
+
 public class Util {
 
     public static class Edge implements Comparable<Edge>{
@@ -40,7 +42,7 @@ public class Util {
         }
 
         public int find(int i){
-
+            Metrics.increaseFinds();
             if (parent[i] == i){
 
                 return i;
@@ -55,7 +57,7 @@ public class Util {
         }
 
         public boolean union(int i, int j){
-
+            Metrics.increaseUnions();
             int rooti = find(i);
             int rootj = find(j);
 

@@ -30,7 +30,7 @@ public class KraskalTest {
         ObjectMapper mapper = new ObjectMapper();
         for(String input : inputFiles){
             try (FileWriter csvWriter = new FileWriter(csv_path)){
-            csvWriter.write("graph_id,size,totalWeight,time,comparisons,unions,finds");
+            csvWriter.write("graph_id,size,totalWeight,time,comparisons,unions,finds\n");
             JsonNode root = mapper.readTree(new File(input));
             ObjectNode  outRoot = (ObjectNode) root.deepCopy();
             ArrayNode graphsInOutput = (ArrayNode) outRoot.get("graphs");
@@ -76,7 +76,7 @@ public class KraskalTest {
                 File outputFile = new File("src/test/json/KraskalOutput_" + input.substring(input.lastIndexOf('_')+1));
                 mapper.writerWithDefaultPrettyPrinter().writeValue(outputFile, outRoot);
 
-                csvWriter.write(String.format("%d,%s,%d,%d,%d,%d,%d",index, edges.size(),
+                csvWriter.write(String.format("%d,%s,%d,%d,%d,%d,%d\n",index, edges.size(),
                 result.second, Metrics.getTimeMs(), Metrics.getComparisons(), Metrics.getUnions(), Metrics.getFinds()));
             }
 

@@ -31,7 +31,7 @@ public class PrimsTest {
         ObjectMapper mapper = new ObjectMapper();
         for(String input : inputFiles){
             try (FileWriter csvWriter = new FileWriter(csv_path)){
-            csvWriter.write("graph_id,size,totalWeight,time,pqoper,relaxations");
+            csvWriter.write("graph_id,size,totalWeight,time,pqoper,relaxations\n");
             JsonNode root = mapper.readTree(new File(input));
             ObjectNode  outRoot = (ObjectNode) root.deepCopy();
             ArrayNode graphsInOutput = (ArrayNode) outRoot.get("graphs");
@@ -80,7 +80,7 @@ public class PrimsTest {
                 index++;
                 File outputFile = new File("src/test/json/PrimOutput_" + input.substring(input.lastIndexOf('_')+1));
                 mapper.writerWithDefaultPrettyPrinter().writeValue(outputFile, outRoot);
-                csvWriter.write(String.format("%d,%s,%d,%d,%d,%d",index, edges.size(),
+                csvWriter.write(String.format("%d,%s,%d,%d,%d,%d\n",index, edges.size(),
                 result.second, Metrics.getTimeMs(), Metrics.getPQOperations(), Metrics.getRelaxations()));
             }
 
